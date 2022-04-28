@@ -1,21 +1,31 @@
 <template>
   <div class="row">
-    <div class="col-8 mx-5">
-      <div class="card shadow-sm">
-        <span class="d-flex mx-3 my-2 justify-content-between">
+    <div class="col-12 p-2 m-3">
+      <div class="card shadow-sm d-flex">
+        <div class="row">
+        <div class="col-5">
+          <span class="d-flex">
           <img
             :src="post.creator.picture"
-            v-if="post.creator.picture"
+            v-if="post.creator.picture" 
             class="rounded-pill"
           />
-          <h6 class="mx-4 pt-3">{{ post.creator.name }}</h6>
+          <p class="pt-4">{{ post.creator.name }}</p>
+          </span >
+          <h3 class="m-5">{{ post.body }}</h3>
           <i
-            class="mdi mdi-delete-outline mdi-36px btn"
+            class="mdi mdi-delete-outline mdi-36px btn ms-5 pt-5 pe-5 mt-auto"
             @click="deletePost()"
           ></i>
-        </span>
-        <h5 class="text-center">{{ post.body }}</h5>
-        <img :src="post.imgUrl" v-if="post.imgUrl" class="img-fluid" />
+        </div>
+        <div class="col-2">
+      
+        </div>
+        <div class="col-5">
+        
+          <img :src="post.imgUrl" v-if="post.imgUrl" class="img-fluid p-3" />
+        </div>
+      </div>
       </div>
       <br />
     </div>
@@ -56,5 +66,7 @@ export default {
 .rounded-pill {
   max-height: 10%;
   max-width: 10%;
+  margin: 5%;
 }
+
 </style>
