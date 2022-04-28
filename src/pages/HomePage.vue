@@ -1,4 +1,5 @@
 <template>
+  <button class="btn btn-info position-fixed mx-5" @click="openModal">+</button>
   <div class="container" v-if="posts">
     <Post v-for="p in posts" :key="p.id" :post="p" />
   </div>
@@ -9,6 +10,7 @@ import { computed, onMounted } from "@vue/runtime-core";
 import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop.js";
 import { AppState } from "../AppState.js";
+import { Modal } from "bootstrap";
 export default {
   setup() {
     onMounted(async () => {
@@ -21,6 +23,11 @@ export default {
     });
     return {
       posts: computed(() => AppState.posts),
+      openModal() {
+        Modal.getOrCreateInstance(
+          document.getElementById("create-post-modal")
+        ).toggle();
+      },
     };
   },
 };

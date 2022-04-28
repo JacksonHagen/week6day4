@@ -10,6 +10,10 @@
       Made with 🔫 by Da Boyz
     </div>
   </footer>
+  <Modal id="create-post-modal">
+    <template #title>Create Post</template>
+    <template #body> <PostForm /> </template>
+  </Modal>
 </template>
 
 <script>
