@@ -1,10 +1,28 @@
 <template>
-  <div class="home"></div>
+  <div class="container" v-if="posts">
+    <Post v-for="p in posts" :key="p.id" :post="p" />
+  </div>
 </template>
 
 <script>
+import { computed, onMounted } from "@vue/runtime-core";
+import { postsService } from "../services/PostsService.js";
+import Pop from "../utils/Pop.js";
+import { AppState } from "../AppState.js";
 export default {
-  name: "Home",
+  setup() {
+    onMounted(async () => {
+      try {
+        await postsService.getAllPosts();
+      } catch (error) {
+        console.error("[error prefix]", error.message);
+        Pop.toast(error.message, "error");
+      }
+    });
+    return {
+      posts: computed(() => AppState.posts),
+    };
+  },
 };
 </script>
 
